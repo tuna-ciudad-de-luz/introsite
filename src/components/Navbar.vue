@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="sticky-top">
         <div class="stripe--red"></div>
         <nav class="navbar navbar-expand-lg navbar-light bg-yellow">
             <a class="navbar-brand" href="#">TCL</a>
@@ -11,22 +11,22 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">Intro <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="#" v-scroll-to="'#home'">Intro <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#tuna">De Tuna</a>
+                        <a class="nav-link" href="#" v-scroll-to="'#tuna'">De Tuna</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#muziek">Muziek</a>
+                        <a class="nav-link" href="#" v-scroll-to="'#muziek'">Muziek</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#gezelligheid">Gezelligheid</a>
+                        <a class="nav-link" href="#" v-scroll-to="'#gezelligheid'">Gezelligheid</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#studeren">Studeren</a>
+                        <a class="nav-link" href="#" v-scroll-to="'#studeren'">Studeren</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#contact">Contact</a>
+                        <a class="nav-link" href="#" v-scroll-to="'#contact'">Contact</a>
                     </li>
                 </ul>
             </div>
@@ -37,7 +37,7 @@
 
 <script>
     export default {
-        name: "Navbar"
+
     }
 </script>
 
