@@ -10,7 +10,8 @@
 
             <div class="collapse navbar-collapse" id="mainNavigation">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active" data-toggle="collapse" data-target=".navbar-collapse.show">
+                    <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
+                    <!--                    <li class="nav-item active" data-toggle="collapse" data-target=".navbar-collapse.show">-->
                         <a class="nav-link" href="#" v-scroll-to="'#home'">Intro</a>
                     </li>
                     <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
