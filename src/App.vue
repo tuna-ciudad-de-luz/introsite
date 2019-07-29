@@ -100,23 +100,23 @@
         <div class="container">
             <Paragraph title="Contact" id="contact" :full-width="true">
                 <template v-slot:paragraphOne>
-                    <form role="form" id="contactForm">
+                    <div role="form" id="contactForm">
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="name" class="h5">Name</label>
-                                <input type="text" class="form-control" id="name" placeholder="Naam">
+                                <input type="text" class="form-control" id="name" placeholder="Naam" v-model="name" required>
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="email" class="h5">Email</label>
-                                <input type="email" class="form-control" id="email" placeholder="Email">
+                                <input type="email" class="form-control" id="email" placeholder="Email" v-model="email" required>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="inputAddress" class="h5">Telefoonnummer</label>
-                            <input type="tel" class="form-control" id="inputAddress" placeholder="Telfoonnummer">
+                            <input type="tel" class="form-control" id="inputAddress" placeholder="Telfoonnummer" v-model="phone" required>
                         </div>
-                        <button type="submit" class="btn btn-danger ml-auto">Verstuur</button>
-                    </form>
+                        <button type="submit" class="btn btn-danger ml-auto" v-on:click="handleForm">Verstuur</button>
+                    </div>
                 </template>
             </Paragraph>
         </div>
@@ -130,6 +130,7 @@
     import Modal from "./components/Modal";
     import Mapbox from "mapbox-gl";
     import {MglMap, MglMarker, MglPopup} from "vue-mapbox";
+    import jQuery from "jquery";
 
     export default {
         name: 'app',
@@ -146,7 +147,7 @@
             return {
                 agendaText: "",
                 tunaText: "Tuna Ciudad de Luz is een studentenmuziekvereniging van de TU Eindhoven. De Tuna is opgericht in 1964 en is daarmee de oudste Tuna buiten Spanje en Portugal. Een Tuna is een groep studenten die behalve studeren ook Spaanse volksmuziek maken. In Spanje heeft bijna elke universiteit een tunagroep, vaak zelfs voor elke faculteit één. Dat een Nederlandse universiteit zoals de TU/e een tunagroep heeft is uniek. Wat begon als een studentengrap, bleek te groeien tot een volwaardige en succesvolle studentenvereniging. Om onze muzikaliteit op een hoog peil te kunnen houden, en omdat het nu eenmaal gezellig is, repeteren we elke dinsdag vanaf 21.00 uur in café de Peapod, Aalsterweg 56. Zin om de sfeer eens te proeven? Kom zeker eens langs!",
-                muziekText: "Het maken van muziek is één van de belangrijkste activiteiten binnen de vereniging. Elke dinsdag repeteren we in Café de Peapod (maps plaatje) om het niveau te houden en nieuwe nummers te leren. Je hoeft geen ervaring met een instrument of zingen te hebben, want we kunnen je dit gewoon aanleren. Genoeg Tuno's zijn bij de Tuna gekomen zonder ooit een instrument aangeraakt te hebben. Als je al iets kan spelen, bijvoorbeeld gitaar, is dat mooi meegenomen! Dan is er ook de mogelijkheid om typisch Spaanse instrumenten te leren spelen, zoals Bandurria en Laud. Voor iedereen is iets leuks te vinden!",
+                muziekText: "Het maken van muziek is één van de belangrijkste activiteiten binnen de vereniging. Elke dinsdag repeteren we in Café de Peapod om het niveau te houden en nieuwe nummers te leren. Je hoeft geen ervaring met een instrument of zingen te hebben, want we kunnen je dit gewoon aanleren. Genoeg Tuno's zijn bij de Tuna gekomen zonder ooit een instrument aangeraakt te hebben. Als je al iets kan spelen, bijvoorbeeld gitaar, is dat mooi meegenomen! Dan is er ook de mogelijkheid om typisch Spaanse instrumenten te leren spelen, zoals Bandurria en Laud. Voor iedereen is iets leuks te vinden!",
                 gezelligheidText: "Naast muziek maken is gezelligheid natuurlijk ook belangrijk in een studentenvereniging. Elke dinsdag eten we samen op ons verenigingshuis voordat we naar de repetitie gaan. En bij de repetitie pakken we er ook graag een biertje bij. \n" +
                     "Daarnaast hebben we ook andere activiteiten. We doen zo’n 25 optredens per jaar en dat wordt altijd gecombineerd met eten, drinken en stappen. \n" +
                     "Ook gaan we elk jaar 1 of 2 keer op reis naar Spanje! Vamos a la fiesta! Dan zoeken we bevriende Tuna groepen op en doen we mee in het festival waar meerdere Tuna groepen samen komen om muziek te maken en te feesten tot diep in de nacht! ",
@@ -158,7 +159,7 @@
                     "                        <li>Donderdag: Markt</li>\n" +
                     "                    </ul>" +
                     "                    <ul>" +
-                    "                        <li>19 september: Borrel op de TU/e</li>\n" +
+                    "                        <li>19 september: Fluxveld</li>\n" +
                     "                        <li>20 september: Kroegen in het centrum van Eindhoven</li>\n" +
                     "                        <li>21 september: Markt</li>\n" +
                     "                        <li>22 september: Markt</li>\n" +
@@ -185,9 +186,9 @@
                         place: "Markt",
                         when: "Donderdag, 20, 21 & 22 september"
                     },
-                    TueTerrein: {
-                        coordinates: [5.4886, 51.4484],
-                        place: "Tue terrein",
+                    Fluxveld: {
+                        coordinates: [5.4904, 51.4469],
+                        place: "Fluxveld",
                         when: "19 september"
                     }
                 },
@@ -210,7 +211,7 @@
                         place: "Bilbao"
                     },
                     Barcelona: {
-                        coordinates: [-0.382, 39.5077],
+                        coordinates: [2.1734, 41.3851],
                         place: "Barcelona"
                     },
                     Madrid: {
@@ -249,8 +250,33 @@
                         coordinates: [0.4058, 40.3581],
                         place: "Peniscola"
                     }
-                }
+                },
+                name: "",
+                email: "",
+                phone: ""
             }
+        },
+        methods: {
+          handleForm() {
+
+
+
+              jQuery.ajax({
+                  type: "POST",
+                  url: "/process.php",
+                  data: "name=" + this.name + "&email=" + this.email + "&message=" + this.phone,
+                  success : function(text){
+                      if (text == "success"){
+                          alert('Succes');
+                          this.name='';
+                          this.email='';
+                          this.phone='';
+                      } else {
+                          alert('Something went wrong, try again');
+                      }
+                  }
+              });
+          }
         },
         created() {
             this.mapbox = Mapbox;

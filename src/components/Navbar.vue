@@ -2,7 +2,9 @@
     <div class="sticky-top">
         <div class="stripe--red"></div>
         <nav class="navbar navbar-expand-lg navbar-light bg-yellow">
-            <a class="navbar-brand" href="#">TCL</a>
+            <a class="navbar-brand" href="#">
+                <img src="../assets/Logo.png" style="height: 35px;">
+            </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainNavigation"
                     aria-controls="mainNavigation" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -10,7 +12,7 @@
 
             <div class="collapse navbar-collapse" id="mainNavigation">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
+                    <li class="nav-item hover" data-toggle="collapse" data-target=".navbar-collapse.show">
                     <!--                    <li class="nav-item active" data-toggle="collapse" data-target=".navbar-collapse.show">-->
                         <a class="nav-link" href="#" v-scroll-to="'#home'">Intro</a>
                     </li>
@@ -62,6 +64,11 @@
         background: #e00;
         width: 100%;
         height: 10px;
+    }
+
+    .nav-item :hover {
+        background: #e0c026;
+
     }
 
 </style>
