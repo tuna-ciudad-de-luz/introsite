@@ -1,10 +1,5 @@
 <template>
     <div>
-        <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-            Modal test
-        </button>
-
         <!-- Modal -->
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
              aria-hidden="true">
@@ -27,7 +22,7 @@
                                     </h2>
                                 </div>
 
-                                <div id="collapseOne" class="collapse show" aria-labelledby="waar" data-parent="#accordionExample">
+                                <div id="collapseOne" class="collapse" aria-labelledby="waar" data-parent="#accordionExample">
                                     <div class="card-body" v-html="agenda">
                                     </div>
                                 </div>
@@ -42,7 +37,7 @@
                                 </div>
                                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
                                     <div class="card-body">
-                                        <a class="btn btn-danger" href="#contact">Schrijf me in</a>
+                                        <button class="btn btn-danger" v-scroll-to="'#contact'" data-dismiss="modal">Contact</button>
                                     </div>
                                 </div>
                             </div>
@@ -58,9 +53,14 @@
 </template>
 
 <script>
+    import jQuery from 'jquery';
+
     export default {
         props: {
             agenda: String
+        },
+        mounted() {
+            jQuery('#myModal').modal('toggle');
         }
     }
 </script>
