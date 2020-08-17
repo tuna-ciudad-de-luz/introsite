@@ -5,6 +5,11 @@
             <a class="navbar-brand" href="#">
                 <img src="../assets/Logo.png" style="height: 35px;">
             </a>
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
+                        <router-link :to="{path: $route.path.includes('en') ? '/' : '/en'}" tag="a" class="nav-link">{{ $route.path.includes('en') ? 'Nederlands' : 'English'}}</router-link>
+                    </li>
+                </ul>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainNavigation"
                     aria-controls="mainNavigation" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -17,16 +22,16 @@
                         <a class="nav-link" href="#" v-scroll-to="'#home'">Intro</a>
                     </li>
                     <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
-                        <a class="nav-link" href="#" v-scroll-to="'#tuna'">De Tuna</a>
+                        <a class="nav-link" href="#" v-scroll-to="'#tuna'">{{ $route.path.includes('en') ? 'The Tuna' : 'De Tuna'}}</a>
                     </li>
                     <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
-                        <a class="nav-link" href="#" v-scroll-to="'#muziek'">Muziek</a>
+                        <a class="nav-link" href="#" v-scroll-to="'#muziek'">{{ $route.path.includes('en') ? 'Music' : 'Muziek'}}</a>
                     </li>
                     <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
-                        <a class="nav-link" href="#" v-scroll-to="'#gezelligheid'">Gezelligheid</a>
+                        <a class="nav-link" href="#" v-scroll-to="'#gezelligheid'">{{ $route.path.includes('en') ? 'Socializing' : 'Gezelligheid'}}</a>
                     </li>
                     <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
-                        <a class="nav-link" href="#" v-scroll-to="'#studeren'">Studeren</a>
+                        <a class="nav-link" href="#" v-scroll-to="'#studeren'">{{ $route.path.includes('en') ? 'Studying' : 'Studeren'}}</a>
                     </li>
                     <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
                         <a class="nav-link" href="#" v-scroll-to="'#contact'">Contact</a>
